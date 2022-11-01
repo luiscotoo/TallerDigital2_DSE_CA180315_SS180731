@@ -20,7 +20,7 @@ public class IngenierosDao {
         List<Ingenieros> lista = null;
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         Transaction t = sesion.beginTransaction();
-        String hql = "FROM ingenieros";
+        String hql = "FROM Ingenieros";
         try {
             lista = sesion.createQuery(hql).list();
             t.commit();

@@ -26,10 +26,10 @@ public class IngenierosControl {
      * Creates a new instance of ingenierosControl
      */
     private List<Ingenieros> listaIngenieros;
-    private Ingenieros banco;
+    private Ingenieros ingeniero;
 
     public IngenierosControl() {
-        banco = new Ingenieros();
+        ingeniero = new Ingenieros();
     }
 
     public List<Ingenieros> getListaIngenieros() {
@@ -43,31 +43,31 @@ public class IngenierosControl {
     }
 
     public Ingenieros getIngenieros() {
-        return banco;
+        return ingeniero;
     }
 
-    public void setIngenieros(Ingenieros banco) {
-        this.banco = banco;
+    public void setIngenieros(Ingenieros ingeniero) {
+        this.ingeniero = ingeniero;
     }
 
     public void limpiarIngenieros() {
-        banco = new Ingenieros();
+        ingeniero = new Ingenieros();
     }
 
     public void agregarIngenieros() {
         IngenierosDao ad = new IngenierosDao();
-        ad.agregar(banco);
+        ad.agregar(ingeniero);
     }
 
     public void modificarIngenieros() {
         IngenierosDao ad = new IngenierosDao();
-        ad.modificar(banco);
+        ad.modificar(ingeniero);
         limpiarIngenieros();
     }
 
     public void eliminarIngenieros() {
         IngenierosDao ad = new IngenierosDao();
-        ad.eliminar(banco);
+        ad.eliminar(ingeniero);
         limpiarIngenieros();
     }
 }
