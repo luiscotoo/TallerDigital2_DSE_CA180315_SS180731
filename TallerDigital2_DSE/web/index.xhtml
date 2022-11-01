@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Tabla Ingenieros</title>
+    </h:head>
+    <h:body>
+        
+        
+        <h:form>
+            <p:commandButton value="Agregar Ingenieros" actionListener="#{ingenierosControl.limpiarIngenieros()}" oncomplete="PF('dialogoAgregar').show();" update=":formAgregar"/>
+            <p:separator/>
+        </h:form>
+        
+         <h:form id="formListado">
+             <p:dataTable id="tablaIngenieros" paginator="true" paginatorPosition="bottom" rows="10" var="ingenieros" value="#{ingenierosControl.listaIngenieros}" emptyMessage="No existen ingenieros">
+                            <p:column headerText="ID">
+                                <h:outputText value="#{ingenieros.idIng}" />
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ingenieros.nombre}" />
+                            </p:column>
+                            <p:column headerText="Apellido">
+                                <h:outputText value="#{ingenieros.apellido}" />
+                            </p:column>
+                            <p:column headerText="Tipo">
+                                <h:outputText value="#{ingenieros.tipo}" />
+                            </p:column>
+                            <p:column headerText="Edad">
+                                <h:outputText value="#{ingenieros.edad}" />
+                            </p:column>
+                            <p:column headerText="Carnet">
+                                <h:outputText value="#{ingenieros.carnet}" />
+                            </p:column>
+                            
+                            <p:column headerText="MODIFICAR" style="text-align: center">
+                                <p:commandButton icon="ui-icon-pencil" title="Modificar" oncomplete="PF('dialogoModificar').show();" update=":formModificar">
+                                    <f:setPropertyActionListener target="#{ingenierosControl.ingenieros}" value="#{ingenieros}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="ELIMINAR" style="text-align: center">
+                                <p:commandButton icon="ui-icon-trash" title="Eliminar" oncomplete="PF('dialogoEliminar').show();" update=":formEliminar">
+                                    <f:setPropertyActionListener target="#{ingenierosControl.ingenieros}" value="#{ingenieros}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+        
+        
+        <h:form id="formAgregar">
+                        <p:dialog id="dlgAgregar" header="Agregar Ingenieros" widgetVar="dialogoAgregar" resizable="false" showEffect="fade" hideEffect="explode" modal="true">
+                            <p:panelGrid columns="5" style="margin: 0 auto;">                                
+                                <p:outputLabel value="Nombre:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.nombre}"/>
+                                <p:outputLabel value="Apellido:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.apellido}"/>
+                                <p:outputLabel value="Tipo:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.tipo}"/>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.edad}"/>
+                                <p:outputLabel value="Carnet:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.carnet}"/>
+                            </p:panelGrid>
+                            <p:commandButton  value="Guardar" actionListener="#{ingenierosControl.agregarIngenieros()}" update=":formListado:tablaIngenieros" oncomplete="PF('dialogoAgregar').hide();"/>
+                            <p:commandButton  value="Cancelar" onclick="PF('dialogoAgregar').hide();"/>
+                        </p:dialog>
+                    </h:form>
+
+                    <h:form id="formModificar">
+                        <p:dialog id="dlgModificar" header="Modificar Ingenieros" widgetVar="dialogoModificar" resizable="false" showEffect="fade" hideEffect="explode" modal="true">
+                            <p:panelGrid columns="2" style="margin: 0 auto;">                                
+                                <p:outputLabel value="Nombre:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.nombre}"/>
+                                <p:outputLabel value="Apellido:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.apellido}"/>
+                                <p:outputLabel value="Tipo:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.tipo}"/>
+                                <p:outputLabel value="Edad:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.edad}"/>
+                                <p:outputLabel value="Carnet:"/>
+                                <p:inputText value="#{ingenierosControl.ingenieros.carnet}"/>
+                                
+                            </p:panelGrid>
+                            <p:commandButton  value="Guardar" actionListener="#{ingenierosControl.modificarIngenieros()}" update=":formListado:tablaIngenieros" oncomplete="PF('dialogoModificar').hide();"/>
+                            <p:commandButton  value="Cancelar" onclick="PF('dialogoModificar').hide();"/>
+                        </p:dialog>
+                    </h:form>
+
+                    <h:form id="formEliminar">
+                        <p:dialog id="dlgEliminar" header="Eliminar Ingenieros" widgetVar="dialogoEliminar" resizable="false" showEffect="fade" hideEffect="explode" modal="true">
+                            <h:outputText value="Desea eliminar este registro?"/>
+                            <p:commandButton  value="Si" actionListener="#{ingenierosControl.eliminarIngenieros()}" update=":formListado:tablaIngenieros" oncomplete="PF('dialogoEliminar').hide();"/>
+                            <p:commandButton  value="No" onclick="PF('dialogoEliminar').hide();"/>
+                        </p:dialog>
+                    </h:form>
+        
+    </h:body>
+</html>
+
