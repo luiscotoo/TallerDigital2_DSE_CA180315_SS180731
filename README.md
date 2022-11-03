@@ -8,5 +8,4 @@
 
 ## Herramientas utilizadas :wrench::hammer:
 * [IDE NetBeans](https://netbeans.apache.org/index.html) - Editor de código.
-* [Apache](https://www.apache.org) - Servidor web.
 * [XAMPP](https://www.apachefriends.org) - Distribución de apache gratuita.
